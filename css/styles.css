@@ -1,0 +1,47 @@
+body {
+    box-sizing: border-box;
+    background-color: #CFD0CF;
+}
+.title{
+    font-family: Arial, sans-serif;
+    color: #434344;
+    font-size: 42px;
+    line-height: 47px;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 595px;
+    margin: 0 auto;
+}
+
+.desk{
+    width: 595;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    perspective: 600px;
+}
+
+.card {
+    width: 125px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 9px;
+    border: 5px solid white;
+    margin-bottom: 25px;
+    font-size: 75px;
+    background: linear-gradient(45deg, #22AB93, #19668D);
+    transition: all 0.5s;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.card.card-flipped{
+    transform: rotateY(180deg);
+    background: white;
+}
