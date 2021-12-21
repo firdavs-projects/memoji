@@ -36,6 +36,7 @@ const cardClickHandler = (ev) => {
 
     if (state.flipped.length < 3) {
         cardEl.classList.add('card-flipped');
+        cardEl.removeEventListener('click', cardClickHandler);
         state.flipped.push({ card, cardEl });
     }
     if (state.flipped.length === 2) {
@@ -50,14 +51,13 @@ const cardClickHandler = (ev) => {
         } else {
             state.flipped.forEach(({ cardEl }) => {
                 cardEl.classList.add("card-not-matched");
-                cardEl.removeEventListener('click', cardClickHandler);;
+                cardEl.removeEventListener('click', cardClickHandler);
             });
         }
         return;
     }
     if (state.flipped.length === 3) {
         const restoreCards = state.flipped.slice(0, 2);
-        console.log(restoreCards, state.flipped);
         restoreCards.forEach(({ cardEl }) => {
             cardEl.classList.remove('card-flipped', "card-not-matched");
             cardEl.innerHTML = "";
