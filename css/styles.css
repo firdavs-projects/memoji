@@ -44,4 +44,15 @@ body {
 .card.card-flipped{
     transform: rotateY(180deg);
     background: white;
+    border: 5px solid white;
+}
+
+.card.card-matched{
+    background: #5AD66F;
+    border: 5px solid #5AD66F;
+}
+
+.card.card-not-matched{
+    background: #F44336;
+    border: 5px solid #F44336;
 }

@@ -11,25 +11,62 @@ const deskEl = document.createElement('div');
 deskEl.classList.add('desk', 'container');
 rootEl.appendChild(deskEl);
 
-const cards = ["🐶", "🐱", "🐭", "🐹", "🐰", "🐻"]
+const cards = ["🐶", "🐱", "🐭", "🐹", "🐰", "🐻", "🐶", "🐱", "🐭", "🐹", "🐰", "🐻"];
+
+const state = { cards: [], flipped: [], matched: [] };
+let id = 0;
 
 const createCard = (card) => {
+    id++;
     const cardEl = document.createElement('div');
-    const cardInnerEl = document.createElement('div');
-    cardInnerEl.classList.add('card-inner');
-    cardEl.appendChild(cardInnerEl);
     cardEl.classList.add('card');
-    cardAddEvent(cardEl, card);
+    cardEl.id = id;
+    state.cards.push({ card, id });
+
+    cardEl.addEventListener('click', cardClickHandler);
     deskEl.appendChild(cardEl);
 }
 
-const cardAddEvent = (cardEl, card) => {
-    cardEl.addEventListener('click', () => {
-        cardEl.classList.toggle('card-flipped');
-        cardEl.classList.contains('card-flipped')
-            ? setTimeout(() => cardEl.innerHTML = card, 150)
-            : setTimeout(() => cardEl.innerHTML = '', 150);
-    });
+const cardClickHandler = (ev) => {
+
+    const cardEl = ev.target;
+    const card = state.cards.find(c => c.id === +cardEl.id).card;
+
+    setTimeout(() => cardEl.innerHTML = card, 150)
+
+    if (state.flipped.length < 3) {
+        cardEl.classList.add('card-flipped');
+        state.flipped.push({ card, cardEl });
+    }
+    if (state.flipped.length === 2) {
+
+        if (state.flipped[0].card === state.flipped[1].card) {
+            state.matched.push(state.flipped[0], state.flipped[1]);
+            state.matched.forEach(({ cardEl }) => {
+                cardEl.classList.add('card-matched');
+                cardEl.removeEventListener('click', cardClickHandler);
+            });
+            state.flipped = [];
+        } else {
+            state.flipped.forEach(({ cardEl }) => {
+                cardEl.classList.add("card-not-matched");
+                cardEl.removeEventListener('click', cardClickHandler);;
+            });
+        }
+        return;
+    }
+    if (state.flipped.length === 3) {
+        const restoreCards = state.flipped.slice(0, 2);
+        console.log(restoreCards, state.flipped);
+        restoreCards.forEach(({ cardEl }) => {
+            cardEl.classList.remove('card-flipped', "card-not-matched");
+            cardEl.innerHTML = "";
+            cardEl.addEventListener('click', cardClickHandler);
+        });
+        state.flipped = [state.flipped[2]];
+        return;
+    }
+
 }
 
 const randomize = (array) => {
@@ -40,4 +77,4 @@ const randomize = (array) => {
     return array;
 }
 
-randomize([...cards, ...cards]).forEach(createCard);
+randomize(cards).forEach(createCard);
