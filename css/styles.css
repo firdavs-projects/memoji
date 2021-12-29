@@ -1,58 +1,124 @@
 body {
-    box-sizing: border-box;
-    background-color: #CFD0CF;
+  box-sizing: border-box;
+  background-color: #cfd0cf;
 }
-.title{
-    font-family: Arial, sans-serif;
-    color: #434344;
-    font-size: 42px;
-    line-height: 47px;
-    text-align: center;
-    margin: 40px 0;
+.title {
+  font-family: Arial, sans-serif;
+  color: #434344;
+  font-size: 42px;
+  line-height: 47px;
+  text-align: center;
+  margin: 40px 0;
 }
 
 .container {
-    width: 100%;
-    max-width: 595px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 595px;
+  margin: 0 auto;
 }
 
-.desk{
-    width: 595;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    perspective: 600px;
+.desk {
+  width: 595;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  perspective: 600px;
 }
 
 .card {
-    width: 125px;
-    height: 125px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 9px;
-    border: 5px solid white;
-    margin-bottom: 25px;
-    font-size: 75px;
-    background: linear-gradient(45deg, #22AB93, #19668D);
-    transition: all 0.5s;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  width: 125px;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 9px;
+  border: 5px solid white;
+  margin-bottom: 25px;
+  font-size: 75px;
+  background: linear-gradient(45deg, #22ab93, #19668d);
+  transition: all 0.5s;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
-.card.card-flipped{
-    transform: rotateY(180deg);
-    background: white;
-    border: 5px solid white;
+.card.card-flipped {
+  transform: rotateY(180deg);
+  background: white;
+  border: 5px solid white;
 }
 
-.card.card-matched{
-    background: #5AD66F;
-    border: 5px solid #5AD66F;
+.card.card-matched {
+  background: #5ad66f;
+  border: 5px solid #5ad66f;
 }
 
-.card.card-not-matched{
-    background: #F44336;
-    border: 5px solid #F44336;
+.card.card-not-matched {
+  background: #f44336;
+  border: 5px solid #f44336;
+}
+
+.timer {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #434344;
+  font-size: 32px;
+  line-height: 36px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.modal-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  background: white;
+  padding: 30px 0;
+}
+
+.modal-title {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #434344;
+  font-size: 48px;
+  line-height: 36px;
+  text-align: center;
+  margin: 0;
+}
+
+.reset-button {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: white;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  font-size: 32px;
+  line-height: 36px;
+  text-align: center;
+  margin-top: 40px;
+  padding: 10px 30px;
+  background: linear-gradient(45deg, #22ab93, #19668d);
+  border-radius: 9px;
+  border: none;
+}
+
+.reset-button:focus {
+    box-shadow: inset 2px 1px 8px rgba(0, 0, 0, 0.6);
 }
